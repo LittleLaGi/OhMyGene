@@ -4,6 +4,7 @@ import GAbind
 import pytest
 
 class TestGAInputParams:
+    gene_count = 5
     generation_number = 100
     mating_parent_ratio = 0.5
     mutation_probability = 0.01
@@ -12,9 +13,12 @@ class TestGAInputParams:
     cross_over_method = 'single_point'
     mutation_method = 'random'
 
-    ga = GAbind.GA(generation_number, mating_parent_ratio, mutation_probability,
+    ga = GAbind.GA(gene_count, generation_number, mating_parent_ratio, mutation_probability,
                     fitness_function_choice, parent_selection_method, cross_over_method,
                     mutation_method)
+
+    def test_getGeneCount1(self):
+        assert self.ga.getGeneCount() == 5
 
     def test_getGenerationNumber1(self):
         assert self.ga.getGenerationNumber() == 100

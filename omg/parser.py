@@ -15,6 +15,7 @@ class Parser:
 
     def parseInput(self, input: dict) -> dict:
         output = input
+        gene_count = output.get('gene_count', None)
         generation_number = output.get('generation_number', None)
         mating_parent_ratio = output.get('mating_parent_ratio', None)
         mutation_probability = output.get('mutation_probability', None)
@@ -22,6 +23,13 @@ class Parser:
         parent_selection_method = output.get('parent_selection_method', None)
         cross_over_method = output.get('cross_over_method', None)
         mutation_method = output.get('mutation_method', None)
+
+        if gene_count is None:
+            raise RuntimeError('Gene count has to be provided!')
+        elif not isinstance(gene_count, int):
+            raise TypeError('Wrong type for gene_count!')
+        elif gene_count <= 0:
+            raise ValueError('Invalid number for gene_count!')
 
         if generation_number is None:
             output['generation_number'] = 100

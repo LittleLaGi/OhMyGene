@@ -5,6 +5,7 @@ import pytest
 
 class TestParser:
     args = {
+        'gene_count' : 5,
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
@@ -58,6 +59,11 @@ class TestParser:
         assert parsed_args['mutation_method'] == 'random'
 
     # pos
+    def test_gene_count_valid_pos1(self):        
+        self.args['gene_count'] = 10
+        Parser(self.args)
+        self.args['gene_count'] = 5
+
     def test_generation_number_valid_pos1(self):        
         self.args['generation_number'] = 10000000
         Parser(self.args)
@@ -72,6 +78,12 @@ class TestParser:
         self.args['mutation_probability'] = 0.000000000001
         Parser(self.args)
         self.args['mutation_probability'] = 0.01
+
+    def test_gene_count_invalid_pos1(self):        
+        self.args['gene_count'] = 0
+        with pytest.raises(ValueError):
+            parser = Parser(self.args)
+        self.args['gene_count'] = 5
 
     def test_mating_parent_ratio_invalid_pos1(self):        
         self.args['mating_parent_ratio'] = 1.1
@@ -117,7 +129,13 @@ class TestParser:
         self.args['mutation_probability'] = 0.01
 
     # type
-    def test_generation_number_type(self):        
+    def test_gene_count_type(self):        
+        self.args['gene_count'] = 5.5
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['gene_count'] = 5
+
+    def test_generation_number_type1(self):        
         self.args['generation_number'] = 100.100
         with pytest.raises(TypeError):
             parser = Parser(self.args)
@@ -135,25 +153,25 @@ class TestParser:
             parser = Parser(self.args)
         self.args['mutation_probability'] = 0.01
 
-    def test_fitness_function_choice_type(self):        
+    def test_fitness_function_choice_type1(self):        
         self.args['fitness_function_choice'] = 0.1
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['fitness_function_choice'] = 'weighted_sum'
     
-    def test_parent_selection_method_type(self):        
+    def test_parent_selection_method_type1(self):        
         self.args['parent_selection_method'] = -3
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['parent_selection_method'] = 'random'
     
-    def test_cross_over_method_type(self):        
+    def test_cross_over_method_type1(self):        
         self.args['cross_over_method'] = 6666
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['cross_over_method'] = 'single_point'
 
-    def test_mutation_method_type(self):        
+    def test_mutation_method_type1(self):        
         self.args['mutation_method'] = 7777
         with pytest.raises(TypeError):
             parser = Parser(self.args)

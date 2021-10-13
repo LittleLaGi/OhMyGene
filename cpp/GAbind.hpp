@@ -5,14 +5,15 @@
 class GA {
 public:
     using individual_type = std::tuple<std::vector<double>, double>;
-    GA(const size_t generation_number, const float mating_parent_ratio, const float mutation_probability,
+    GA(const size_t gene_count, const size_t generation_number, const float mating_parent_ratio, const float mutation_probability,
         const std::string fitness_function_choice, const std::string parent_selection_method,
         const std::string cross_over_methods, const std::string mutation_methods)
-        : generation_number(generation_number), mating_parent_ratio(mating_parent_ratio),
+        : gene_count(gene_count), generation_number(generation_number), mating_parent_ratio(mating_parent_ratio),
         mutation_probability(mutation_probability), fitness_function_choice(fitness_function_choice),
         parent_selection_method(parent_selection_method), cross_over_methods(cross_over_methods),
         mutation_methods(mutation_methods) {}
     // getter for input params: for debug usage
+    const size_t getGeneCount() { return gene_count; }
     const size_t getGenerationNumber() { return generation_number; }
     const float getMatingParentRatio() { return mating_parent_ratio; }
     const float getMutationProbability() { return mutation_probability; }
@@ -31,6 +32,7 @@ public:
 
 private:
     // params
+    const size_t gene_count;
     const size_t generation_number;
     const float mating_parent_ratio;
     const float mutation_probability;

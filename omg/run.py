@@ -2,6 +2,8 @@
 
 '''
 Tunable Parameters
+0. gene count (no default)
+    range: > 0
 1. generation number (default = 100)
     range: >= 0
 2. mating parent ratio (default = 0.5)
@@ -12,12 +14,14 @@ Tunable Parameters
     options: 
         weighted_sum
         pareto_ranking
+4.1 weights (if weighted_sum is chosen)
+    len(weights) == gene count
 5. parent selection method (default = random selection)
     options:
         random
         rank
         tournament
-        roulette_wheel
+        roulette_wheel (fitness has to be positive)
 6. cross over method (default = single point crossover)
     options:
         single_point
@@ -37,6 +41,7 @@ from printer import Printer
 
 def main():
     args = {
+        'gene_count' : 5,
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
