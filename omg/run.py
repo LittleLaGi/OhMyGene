@@ -33,6 +33,7 @@ Tunable Parameters
 '''
 
 from parser import Parser
+from printer import Printer
 
 def main():
     args = {
@@ -44,9 +45,32 @@ def main():
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
     }
-
     parser = Parser(args)
     parsed_args = parser.getParams()
+
+    
+    result = {
+        'last_population': [
+            ([1.1, -1.1], 0.01), ([2.2, -2.2], 0.02), ([3.3, -3.3], 0.03), ([4.4, -4.4], 0.04),
+            ([5.5, -5.5], 0.05), ([6.6, -6.6], 0.06), ([7.7, -7.7], 0.07), ([8.8, -8.8], 0.08)
+        ],
+        'best_fitness': [
+            0.1, 0.09, 0.08, 0.07, 0.06, 0.05, 0.04, 0.03, 0.02 ,0.01
+        ],
+        'new_solution_rate': [
+            10, 8, 8, 5, 3, 4, 4, 4, 2, 2
+        ]
+    }
+    printer = Printer(result)
+    """
+    printer.printTopPercent(1)
+    printer.printTopPercent(5)
+    printer.printTopPercent(10)
+    printer.printTopPercent(50)
+    printer.printTopPercent(100)
+    """
+    printer.plotFitness()
+    printer.plotNewSolutionRate()
 
 
 if __name__ == "__main__":
