@@ -1,7 +1,6 @@
 class Parser:
     """Checks the validity of input parameters and performs necessary transformations."""
     params: dict
-    fitness_function_choices = {'weighted_sum', 'pareto_ranking'}
     parent_selection_methods = {'random', 'rank', 'tournament', 'roulette_wheel'}
     cross_over_methods = {'single_point', 'two_points', 'uniform', 'scattered'}
     mutation_methods = {'random', 'swap', 'scramble', 'adaptive'}
@@ -19,7 +18,7 @@ class Parser:
         generation_number = output.get('generation_number', None)
         mating_parent_ratio = output.get('mating_parent_ratio', None)
         mutation_probability = output.get('mutation_probability', None)
-        fitness_function_choice = output.get('fitness_function_choice', None)
+        weights = output.get('weights', None)
         parent_selection_method = output.get('parent_selection_method', None)
         cross_over_method = output.get('cross_over_method', None)
         mutation_method = output.get('mutation_method', None)
@@ -52,12 +51,14 @@ class Parser:
         elif mutation_probability <= 0 or mutation_probability >= 1:
             raise ValueError('Invalid number for mutation_probability!')
 
-        if fitness_function_choice is None:
-            output['fitness_function_choice'] = 'weighted_sum'
-        elif not isinstance(fitness_function_choice, str):
-            raise TypeError('Wrong type for fitness_function_choice!')
-        elif fitness_function_choice not in self.fitness_function_choices:
-            raise ValueError('Invalid option for fitness_function_choice')
+        if weights is None:
+            raise RuntimeError('Weights have to be provided!')
+        elif not isinstance(weights, list):
+            raise TypeError('Wrong type for weights!')
+        else:
+            for w in weights:
+                if not isinstance(w, float) and not isinstance(w, int):
+                    raise TypeError('Wrong type for weights!')
 
         if parent_selection_method is None:
             output['parent_selection_method'] = 'random'

@@ -9,6 +9,7 @@ class TestParser:
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
+        'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
         'parent_selection_method' : 'random',
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
@@ -145,6 +146,18 @@ class TestParser:
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['mutation_probability'] = 0.01
+    
+    def test_weights_type1(self):        
+        self.args['weights'] = '???'
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['weights'] = [0.2, 0.2, 0.2, 0.2, 0.2]
+
+    def test_weights_type2(self):        
+        self.args['weights'][1] = '!'
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['weights'][1] = 0.2
     
     def test_parent_selection_method_type1(self):        
         self.args['parent_selection_method'] = -3

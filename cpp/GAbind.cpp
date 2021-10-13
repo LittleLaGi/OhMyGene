@@ -9,13 +9,14 @@ PYBIND11_MODULE(GAbind, m) {
   m.doc() = "uderlying GA class for OMG";
   py::class_<GA>(m, "GA")
     .def(py::init<const size_t, const size_t, const float, const float,
-                   const std::string,
+                  const std::vector<float>, const std::string,
                   const std::string, const std::string>())
     // getter for input params: for debug usage
     .def("getGeneCount", &GA::getGeneCount)
     .def("getGenerationNumber", &GA::getGenerationNumber)
     .def("getMatingParentRatio", &GA::getMatingParentRatio)
     .def("getMutationProbability", &GA::getMutationProbability)
+    .def("getWeights", &GA::getWeights)
     .def("getParentSelectionMethod", &GA::getParentSelectionMethod)
     .def("getCrossOverMethods", &GA::getCrossOverMethods)
     .def("getMutationMethods", &GA::getMutationMethods)

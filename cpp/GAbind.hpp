@@ -6,10 +6,10 @@ class GA {
 public:
     using individual_type = std::tuple<std::vector<double>, double>;
     GA(const size_t gene_count, const size_t generation_number, const float mating_parent_ratio,
-        const float mutation_probability, const std::string parent_selection_method,
+        const float mutation_probability, const std::vector<float> weights, const std::string parent_selection_method,
         const std::string cross_over_methods, const std::string mutation_methods)
         : gene_count(gene_count), generation_number(generation_number), mating_parent_ratio(mating_parent_ratio),
-        mutation_probability(mutation_probability), 
+        mutation_probability(mutation_probability), weights(weights),
         parent_selection_method(parent_selection_method), cross_over_methods(cross_over_methods),
         mutation_methods(mutation_methods) {}
     // getter for input params: for debug usage
@@ -17,6 +17,7 @@ public:
     const size_t getGenerationNumber() { return generation_number; }
     const float getMatingParentRatio() { return mating_parent_ratio; }
     const float getMutationProbability() { return mutation_probability; }
+    const std::vector<float> getWeights() { return weights; }
     const std::string getParentSelectionMethod() { return parent_selection_method; }
     const std::string getCrossOverMethods() { return cross_over_methods; }
     const std::string getMutationMethods() { return mutation_methods; }
@@ -35,6 +36,7 @@ private:
     const size_t generation_number;
     const float mating_parent_ratio;
     const float mutation_probability;
+    const std::vector<float> weights;
     const std::string parent_selection_method;
     const std::string cross_over_methods;
     const std::string mutation_methods;

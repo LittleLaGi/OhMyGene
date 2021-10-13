@@ -11,7 +11,7 @@ Tunable Parameters
 3. mutation probability (default = 0.01)
     range: > 0 && < 1
 4. weights (if weighted_sum is chosen)
-    len(weights) == gene countg
+    len(weights) == gene count
 5. parent selection method (default = random selection)
     options:
         random
@@ -41,7 +41,7 @@ def main():
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
-
+        'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
         'parent_selection_method' : 'random',
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
