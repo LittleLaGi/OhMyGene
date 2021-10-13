@@ -9,7 +9,6 @@ class TestParser:
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
-        'fitness_function_choice' : 'weighted_sum',
         'parent_selection_method' : 'random',
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
@@ -33,12 +32,6 @@ class TestParser:
         parser = Parser(self.args)
         parsed_args = parser.getParams()
         assert parsed_args['mutation_probability'] == 0.01
-    
-    def test_fitness_function_choice_default(self):        
-        del self.args['fitness_function_choice']
-        parser = Parser(self.args)
-        parsed_args = parser.getParams()
-        assert parsed_args['fitness_function_choice'] == 'weighted_sum'
 
     def test_parent_selection_method_default(self):        
         del self.args['parent_selection_method']
@@ -152,12 +145,6 @@ class TestParser:
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['mutation_probability'] = 0.01
-
-    def test_fitness_function_choice_type1(self):        
-        self.args['fitness_function_choice'] = 0.1
-        with pytest.raises(TypeError):
-            parser = Parser(self.args)
-        self.args['fitness_function_choice'] = 'weighted_sum'
     
     def test_parent_selection_method_type1(self):        
         self.args['parent_selection_method'] = -3
@@ -178,12 +165,6 @@ class TestParser:
         self.args['mutation_method'] = 'random'
 
     # wrong option
-    def test_fitness_function_choice_type(self):        
-        self.args['fitness_function_choice'] = 'yolo!'
-        with pytest.raises(ValueError):
-            parser = Parser(self.args)
-        self.args['fitness_function_choice'] = 'weighted_sum'
-    
     def test_parent_selection_method_type(self):        
         self.args['parent_selection_method'] = 'gg inin der'
         with pytest.raises(ValueError):

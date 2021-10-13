@@ -10,12 +10,8 @@ Tunable Parameters
     range: > 0 && < 1
 3. mutation probability (default = 0.01)
     range: > 0 && < 1
-4. fitness function choice (default = weighted sum)
-    options: 
-        weighted_sum
-        pareto_ranking
-4.1 weights (if weighted_sum is chosen)
-    len(weights) == gene count
+4. weights (if weighted_sum is chosen)
+    len(weights) == gene countg
 5. parent selection method (default = random selection)
     options:
         random
@@ -45,7 +41,7 @@ def main():
         'generation_number' : 100,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
-        'fitness_function_choice' : 'weighted_sum',
+
         'parent_selection_method' : 'random',
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
