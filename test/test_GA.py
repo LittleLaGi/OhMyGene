@@ -5,6 +5,7 @@ import pytest
 
 class TestGAInputParams:
     gene_count = 5
+    gene_bound = [(0,100), (0,100), (0,100), (0,100), (0,100)]
     generation_number = 100
     population_size = 10
     mating_parent_ratio = 0.5
@@ -14,12 +15,15 @@ class TestGAInputParams:
     cross_over_method = 'single_point'
     mutation_method = 'random'
 
-    ga = GAbind.GA(gene_count, generation_number, population_size, mating_parent_ratio,
+    ga = GAbind.GA(gene_count, gene_bound, generation_number, population_size, mating_parent_ratio,
                     mutation_probability, weights, parent_selection_method, cross_over_method,
                     mutation_method)
 
     def test_getGeneCount1(self):
         assert self.ga.getGeneCount() == 5
+
+    def test_getGeneCountBound1(self):
+        assert self.ga.getGeneBound() == [(0,100), (0,100), (0,100), (0,100), (0,100)]
 
     def test_getGenerationNumber1(self):
         assert self.ga.getGenerationNumber() == 100

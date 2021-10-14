@@ -6,6 +6,7 @@ import pytest
 class TestParser:
     args = {
         'gene_count' : 5,
+        'gene_bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
         'generation_number' : 100,
         'population_size' : 10,
         'mating_parent_ratio' : 0.5,
@@ -60,11 +61,6 @@ class TestParser:
         assert parsed_args['mutation_method'] == 'random'
 
     # pos
-    def test_gene_count_valid_pos1(self):        
-        self.args['gene_count'] = 10
-        Parser(self.args)
-        self.args['gene_count'] = 5
-
     def test_generation_number_valid_pos1(self):        
         self.args['generation_number'] = 10000000
         Parser(self.args)
@@ -117,6 +113,12 @@ class TestParser:
         self.args['weights'][2] = 0.2
 
     # neg
+    def test_gene_bound_neg1(self):        
+        self.args['gene_bound'][2] = (-1, 100)
+        with pytest.raises(ValueError):
+            parser = Parser(self.args)
+        self.args['gene_bound'][2] = (0, 100)
+
     def test_generation_number_neg(self):        
         self.args['generation_number'] = -10
         with pytest.raises(ValueError):
@@ -148,11 +150,23 @@ class TestParser:
         self.args['weights'][2] = 0.2
 
     # type
-    def test_gene_count_type(self):        
+    def test_gene_count_type1(self):        
         self.args['gene_count'] = 5.5
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['gene_count'] = 5
+
+    def test_gene_bound_type1(self):        
+        self.args['gene_bound'][3] = '!'
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['gene_bound'][3] = (0, 100)
+
+    def test_gene_bound_type2(self):        
+        self.args['gene_bound'][3] = (0, 0, 0)
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['gene_bound'][3] = (0, 100)
 
     def test_generation_number_type1(self):        
         self.args['generation_number'] = 100.100
@@ -233,3 +247,9 @@ class TestParser:
         with pytest.raises(RuntimeError):
             parser = Parser(self.args)
         self.args['weights'] = [0.2, 0.2, 0.2, 0.2, 0.2]
+
+    def test_gene_bound_neg1(self):        
+        self.args['gene_bound'] = [(0,100), (0,100), (0,100), (0,100), (0,100), (0, 100)]
+        with pytest.raises(RuntimeError):
+            parser = Parser(self.args)
+        self.args['gene_bound'] = [(0,100), (0,100), (0,100), (0,100), (0,100)]
