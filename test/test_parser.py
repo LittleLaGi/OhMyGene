@@ -7,6 +7,7 @@ class TestParser:
     args = {
         'gene_count' : 5,
         'generation_number' : 100,
+        'population_size' : 10,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
         'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
@@ -21,6 +22,12 @@ class TestParser:
         parser = Parser(self.args)
         parsed_args = parser.getParams()
         assert parsed_args['generation_number'] == 100
+
+    def test_population_size_default(self):        
+        del self.args['population_size']
+        parser = Parser(self.args)
+        parsed_args = parser.getParams()
+        assert parsed_args['population_size'] == 50
 
     def test_mating_parent_ratio_default(self):        
         del self.args['mating_parent_ratio']
@@ -103,12 +110,24 @@ class TestParser:
             parser = Parser(self.args)
         self.args['mutation_probability'] = 0.01
 
+    def test_weights_invalid_pos1(self):        
+        self.args['weights'][2] = 1.1
+        with pytest.raises(ValueError):
+            parser = Parser(self.args)
+        self.args['weights'][2] = 0.2
+
     # neg
     def test_generation_number_neg(self):        
         self.args['generation_number'] = -10
         with pytest.raises(ValueError):
             parser = Parser(self.args)
         self.args['generation_number'] = 100
+
+    def test_population_size_neg(self):        
+        self.args['population_size'] = -1
+        with pytest.raises(ValueError):
+            parser = Parser(self.args)
+        self.args['population_size'] = 10
 
     def test_mating_parent_ratio_neg(self):        
         self.args['mating_parent_ratio'] = -0.1
@@ -122,6 +141,12 @@ class TestParser:
             parser = Parser(self.args)
         self.args['mutation_probability'] = 0.01
 
+    def test_weights_neg1(self):        
+        self.args['weights'][2] = -0.1
+        with pytest.raises(ValueError):
+            parser = Parser(self.args)
+        self.args['weights'][2] = 0.2
+
     # type
     def test_gene_count_type(self):        
         self.args['gene_count'] = 5.5
@@ -134,6 +159,12 @@ class TestParser:
         with pytest.raises(TypeError):
             parser = Parser(self.args)
         self.args['generation_number'] = 100
+    
+    def test_population_size_type1(self):        
+        self.args['population_size'] = 5.5
+        with pytest.raises(TypeError):
+            parser = Parser(self.args)
+        self.args['population_size'] = 10
     
     def test_mating_parent_ratio_type1(self):        
         self.args['mating_parent_ratio'] = 'hello'
@@ -195,3 +226,10 @@ class TestParser:
         with pytest.raises(ValueError):
             parser = Parser(self.args)
         self.args['mutation_method'] = 'random'
+
+    # runtime error
+    def test_weights_neg1(self):        
+        self.args['weights'] = []
+        with pytest.raises(RuntimeError):
+            parser = Parser(self.args)
+        self.args['weights'] = [0.2, 0.2, 0.2, 0.2, 0.2]

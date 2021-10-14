@@ -16,6 +16,7 @@ class Parser:
         output = input
         gene_count = output.get('gene_count', None)
         generation_number = output.get('generation_number', None)
+        population_size = output.get('population_size', None)
         mating_parent_ratio = output.get('mating_parent_ratio', None)
         mutation_probability = output.get('mutation_probability', None)
         weights = output.get('weights', None)
@@ -37,6 +38,13 @@ class Parser:
         elif generation_number < 0:
             raise ValueError('Invalid number for generation_number!')
 
+        if population_size is None:
+            output['population_size'] = gene_count * 10
+        elif not isinstance(population_size, int):
+            raise TypeError('Wrong type for population size!')
+        elif population_size < 1:
+            raise ValueError('Invalid number for population size!')
+
         if mating_parent_ratio is None:
             output['mating_parent_ratio'] = 0.5
         elif not isinstance(mating_parent_ratio, float) and not isinstance(mating_parent_ratio, int):
@@ -51,14 +59,16 @@ class Parser:
         elif mutation_probability <= 0 or mutation_probability >= 1:
             raise ValueError('Invalid number for mutation_probability!')
 
-        if weights is None:
+        if weights is None or len(weights) < 1:
             raise RuntimeError('Weights have to be provided!')
         elif not isinstance(weights, list):
             raise TypeError('Wrong type for weights!')
         else:
             for w in weights:
                 if not isinstance(w, float) and not isinstance(w, int):
-                    raise TypeError('Wrong type for weights!')
+                    raise TypeError(f'Wrong type for w in weights: {w}')
+                if w < 0 or w > 1:
+                    raise ValueError(f'Invalid value for w in weights: {w}')
 
         if parent_selection_method is None:
             output['parent_selection_method'] = 'random'

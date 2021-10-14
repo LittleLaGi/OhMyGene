@@ -6,25 +6,27 @@ Tunable Parameters
     range: > 0
 1. generation number (default = 100)
     range: >= 0
-2. mating parent ratio (default = 0.5)
+2. population size (default = gene_count * 10)
+3. mating parent ratio (default = 0.5)
     range: > 0 && < 1
-3. mutation probability (default = 0.01)
+4. mutation probability (default = 0.01)
     range: > 0 && < 1
-4. weights (if weighted_sum is chosen)
-    len(weights) == gene count
-5. parent selection method (default = random selection)
+5. weights
+    len(weights) implicitly determines objective function counts ( > 0)
+    w >= 0 && w <= 1 for w in weights
+6. parent selection method (default = random selection)
     options:
         random
         rank
         tournament
         roulette_wheel (fitness has to be positive)
-6. cross over method (default = single point crossover)
+7. cross over method (default = single point crossover)
     options:
         single_point
         two_points
         uniform
         scattered
-7. mutation method (default = random mutation)
+8. mutation method (default = random mutation)
     options:
         random
         swap
@@ -39,6 +41,7 @@ def main():
     args = {
         'gene_count' : 5,
         'generation_number' : 100,
+        'population size' : 10,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
         'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
