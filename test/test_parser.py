@@ -248,6 +248,12 @@ class TestParser:
             parser = Parser(self.args)
         self.args['weights'] = [0.2, 0.2, 0.2, 0.2, 0.2]
 
+    def test_weights_sum1(self):        
+        self.args['weights'][1] = 0.3
+        with pytest.raises(RuntimeError):
+            parser = Parser(self.args)
+        self.args['weights'][1] = 0.2
+
     def test_gene_bound_neg1(self):        
         self.args['gene_bound'] = [(0,100), (0,100), (0,100), (0,100), (0,100), (0, 100)]
         with pytest.raises(RuntimeError):

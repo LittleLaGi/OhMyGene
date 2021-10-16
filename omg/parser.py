@@ -81,6 +81,9 @@ class Parser:
                     raise TypeError(f'Wrong type for w in weights: {w}')
                 if w < 0 or w > 1:
                     raise ValueError(f'Invalid value for w in weights: {w}')
+        if sum(weights) != 1:
+            raise RuntimeError(f'Sum of weights must equals to 1: {sum(weights)}')
+
 
         if parent_selection_method is None:
             output['parent_selection_method'] = 'random'

@@ -9,7 +9,7 @@ make: *** No rule to make target '/home/littlelagi/LittleLaGi/q1/Makefile'.  Sto
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Oct 14 15:24:26 2021
+# Make data base, printed on Sat Oct 16 14:26:56 2021
 
 # Variables
 
@@ -54,7 +54,7 @@ SNAP_DATA = /var/snap/code/76
 # environment
 VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
 # environment
-JOURNAL_STREAM = 8:46143
+JOURNAL_STREAM = 8:43734
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # environment
@@ -80,7 +80,7 @@ VSCODE_VERBOSE_LOGGING = true
 # environment
 _ = /snap/code/76/usr/share/code/code
 # environment
-MANAGERPID = 945
+MANAGERPID = 968
 # environment
 CLUTTER_IM_MODULE = xim
 # environment
@@ -98,7 +98,7 @@ PATH = /home/littlelagi/.local/bin:/home/littlelagi/.local/bin:/usr/local/sbin:/
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
-SESSION_MANAGER = local/littlelagi:@/tmp/.ICE-unix/1267,unix/littlelagi:/tmp/.ICE-unix/1267
+SESSION_MANAGER = local/littlelagi:@/tmp/.ICE-unix/1288,unix/littlelagi:/tmp/.ICE-unix/1288
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -116,7 +116,7 @@ DISABLE_WAYLAND = 1
 # environment
 VSCODE_CRASH_REPORTER_START_OPTIONS = {"companyName":"Microsoft","productName":"VSCode","submitURL":"appcenter://code?aid=fba07a4d-84bd-4fc8-a125-9640fc8ce171&uid=e7f9ac43-6ab3-4c4b-a0f2-806b7e4cefff&iid=e7f9ac43-6ab3-4c4b-a0f2-806b7e4cefff&sid=e7f9ac43-6ab3-4c4b-a0f2-806b7e4cefff","uploadToServer":true}
 # environment
-INVOCATION_ID = 2cd358690cbc46c38eca6f65b91aa43a
+INVOCATION_ID = 2897af66e9cc493385522f4edcc03723
 # environment
 GDK_PIXBUF_MODULEDIR = /snap/code/76/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
 # default
@@ -128,7 +128,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 1951
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3965
 # automatic
 %F = $(notdir $%)
 # environment
@@ -144,8 +144,9 @@ PWD = /home/littlelagi/OhMyGene
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 1201
+SSH_AGENT_PID = 1222
 # environment
+ 
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
 GTK_MODULES = gail:atk-bridge
@@ -198,7 +199,7 @@ SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-117a046d-3b63-4896-9ad2-852327c98672.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-5562da64-d2dd-4840-a29f-a4b6035ce520.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -224,6 +225,7 @@ MAKE_COMMAND := make
 # environment
 VSCODE_IPC_HOOK = /run/user/1000/vscode-35ef4fc0-1.61.0-main.sock
 # environment
+ 
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # makefile
 MAKEFLAGS = prR
@@ -284,8 +286,7 @@ LC_ADDRESS = zh_HK.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 2137
- 
+VSCODE_PID = 4009
 # variable set hash-table stats:
 # Load=136/1024=13%, Rehash=0, Collisions=24/156=15%
 
@@ -337,6 +338,6 @@ all:
 # strcache performance: lookups = 9 / hit rate = 33%
 # hash-table stats:
 # Load=6/8192=0%, Rehash=0, Collisions=0/9=0%
-# Finished Make data base on Thu Oct 14 15:24:26 2021
+# Finished Make data base on Sat Oct 16 14:26:56 2021
 
  

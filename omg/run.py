@@ -40,8 +40,8 @@ Tunable Parameters
         adaptive
 '''
 
-from parser import Parser
 from printer import Printer
+from wrapper import GAwrapper
 
 def main():
     args = {
@@ -56,10 +56,11 @@ def main():
         'cross_over_method' : 'single_point',
         'mutation_method' : 'random'
     }
-    parser = Parser(args)
-    parsed_args = parser.getParams()
 
-    
+    ga = GAwrapper()
+    ga.setParams(args)
+    ga.run()
+  
     result = {
         'last_population': [
             ([1.1, -1.1], 0.01), ([2.2, -2.2], 0.02), ([3.3, -3.3], 0.03), ([4.4, -4.4], 0.04),
@@ -79,10 +80,10 @@ def main():
     printer.printTopPercent(10)
     printer.printTopPercent(50)
     printer.printTopPercent(100)
-    """
+
     printer.plotFitness()
     printer.plotNewSolutionRate()
-
+    """
 
 if __name__ == "__main__":
     main()
