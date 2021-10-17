@@ -41,8 +41,6 @@ public:
     /* basic GA operation */
     // initialize indivisuals according to gene_bound and push them input parents
     void createInitialPopulation();
-    // create initial population
-    // initial generation
     // evaluate fitness value for each chromosome: x
         // for each wi and objective function fi:
         // fitness = sum(wi * norm(fi(x)))

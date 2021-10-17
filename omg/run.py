@@ -7,9 +7,6 @@ Tunable Parameters
 0.1 gene bound (no default)
     len(gene_bound) == gene_count
     lower bound constraint: >= 0
-    upper bound constraint: <= RAND_MAX
-        Note: RAND_MAX dependents on underlying C++ library, but is guaranteed to be at least 32767.
-        ref: https://www.cplusplus.com/reference/cstdlib/RAND_MAX/
 1. generation number (default = 100)
     range: >= 0
 2. population size (default = gene_count * 10)
