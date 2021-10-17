@@ -1,0 +1,5 @@
+if(EXISTS "/home/littlelagi/OhMyGene/test/cpp/build/GAbind_test[1]_tests.cmake")
+  include("/home/littlelagi/OhMyGene/test/cpp/build/GAbind_test[1]_tests.cmake")
+else()
+  add_test(GAbind_test_NOT_BUILT GAbind_test_NOT_BUILT)
+endif()

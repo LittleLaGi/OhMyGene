@@ -1,0 +1,4 @@
+GAbindTest.DummyTest 2 0.00184177
+GAbindTest.ParentsInitGeneTest 1 0.00208387
+GAbindTest.createInitialPopulationTest 1 0.0037202
+---

@@ -41,6 +41,8 @@ PYBIND11_MODULE(GAbind, m) {
     .def("getParentSelectionMethod", &GA::getParentSelectionMethod)
     .def("getCrossOverMethods", &GA::getCrossOverMethods)
     .def("getMutationMethods", &GA::getMutationMethods)
+    /* getter for internal data structures: for debug usage */
+    .def("getParents", &GA::getParents)
     /* setter for results: for debug usage */
     .def("setLastPopulation", &GA::setLastPopulation)
     .def("setBestFitness", &GA::setBestFitness)

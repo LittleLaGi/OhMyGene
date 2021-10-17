@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/GAbind_test.dir/GAbind_test.cc.o  -o GAbind_test  lib/libgtest_main.a lib/libgtest.a -lpthread 

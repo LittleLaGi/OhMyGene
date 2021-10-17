@@ -1,12 +1,9 @@
 import GAbind
-from omg.parser import Parser
+from parser import Parser
 
 class GAwrapper:
     params: dict
     ga: GAbind.GA
-
-    def __init__(self):
-        pass
 
     def setParams(self, input: dict):
         self.params = Parser(input).getParams()
@@ -29,4 +26,6 @@ class GAwrapper:
         
         ga.createInitialPopulation()
 
-        print(ga.getParents)
+        parents = ga.getParents()
+        for i in range(len(parents)):
+            print(f'{i}: {parents[i]}')

@@ -25,11 +25,23 @@ protected:
     // Code here will be called immediately after each test (right before the destructor).
   }
 
+  GA ga = GA(5, {{0, 100}, {0, 100}, {0, 100}, {0, 100}, {0, 100}}, 100, 10,
+            0.5, 0.01, {0.2, 0.2, 0.2, 0.2, 0.2}, "random", "single_point", "random");
+
 };
 
 
-TEST_F(GAbindTest, DummyTest) {
-  ASSERT_NE(1, 0);
+TEST_F(GAbindTest, createInitialPopulationTest) {
+  auto parents = ga.getParents();
+  for (auto& t : parents){
+    auto gene = std::get<0>(t);
+    for (size_t i = 0; i < gene.size(); ++i) {
+      const size_t lower = std::get<0>(ga.getGeneBound()[i]);
+      const size_t upper = std::get<1>(ga.getGeneBound()[i]);
+      EXPECT_GE(gene[i], lower);
+      EXPECT_LE(gene[i], upper);
+    }
+  }
 }
 
 

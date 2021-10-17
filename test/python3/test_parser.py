@@ -1,5 +1,3 @@
-#!/usr/bin/env python3
-
 from omg.parser import Parser
 import pytest
 

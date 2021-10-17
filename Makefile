@@ -6,7 +6,7 @@ all:
 	g++ -Wall -shared -std=c++11 -fPIC $(PINC) src/GAbind.cpp -o GAbind$(SUFFIX) -I/usr/include/python3.8 -I/home/littlelagi/OhMyGene/include
 
 run:
-	omg/run.py
+	python3 omg/run.py
 
 test: testPython testCpp
 

@@ -36,16 +36,17 @@ Tunable Parameters
         scramble
         adaptive
 '''
-
+import sys
+sys.path.append('/home/littlelagi/OhMyGene')
 from printer import Printer
 from wrapper import GAwrapper
 
 def main():
     args = {
         'gene_count' : 5,
-        'gene bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
+        'gene_bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
         'generation_number' : 100,
-        'population size' : 10,
+        'population_size' : 10,
         'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
         'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
@@ -57,7 +58,11 @@ def main():
     ga = GAwrapper()
     ga.setParams(args)
     ga.run()
-  
+    
+
+
+
+    """ test Printer """
     result = {
         'last_population': [
             ([1.1, -1.1], 0.01), ([2.2, -2.2], 0.02), ([3.3, -3.3], 0.03), ([4.4, -4.4], 0.04),
