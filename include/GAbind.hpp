@@ -14,8 +14,11 @@ public:
         : gene_count(gene_count), gene_bound(gene_bound), generation_number(generation_number), population_size(population_size),
         mating_parent_ratio(mating_parent_ratio), mutation_probability(mutation_probability), weights(weights),
         parent_selection_method(parent_selection_method), cross_over_methods(cross_over_methods),
-        mutation_methods(mutation_methods) {}
-    
+        mutation_methods(mutation_methods) 
+        {
+            mating_parent_num = (int)(population_size * mating_parent_ratio);
+        }
+
     /* getter for input params: for debug usage */
     const size_t getGeneCount() { return gene_count; }
     const std::vector<bound> getGeneBound() { return gene_bound; }
@@ -29,6 +32,7 @@ public:
     const std::string getMutationMethods() { return mutation_methods; }
     /* getter for internal data structures: for debug usage */
     const std::vector<individual_type> getParents() { return parents; }
+    const size_t getMatingParentNum() { return mating_parent_num; }
     /* setter for results: for debug usage */
     void setLastPopulation(std::vector<individual_type> last_pop) { last_population = last_pop; }
     void setBestFitness(std::vector<double> best_fit) { best_fitness = best_fit; }
@@ -37,7 +41,7 @@ public:
     std::vector<individual_type> getLastPopulation() { return last_population; }
     std::vector<double> getBestFitness() { return best_fitness; }
     std::vector<unsigned> getNewSolutionRate() { return new_solution_rate; }
-
+    
     /* basic GA operation */
     // initialize indivisuals according to gene_bound and push them input parents
     void createInitialPopulation();
@@ -45,13 +49,17 @@ public:
         // for each wi and objective function fi:
         // fitness = sum(wi * norm(fi(x)))
         // signature for each fi: double f(std::vector<double>)
-    // selection
+    // selection: return indices fo parents
+    std::vector<size_t> selectParents();
+    std::vector<size_t> randomSelection();
     // crossover
     // mutation
     // no "run" function => implemented in wrapper => convient for debugging
 
-    // helper functions
+    /* helper functions */
 
+    /* objective functions */
+    double objFunc1(gene);
 
 private:
     /* params */
@@ -70,6 +78,7 @@ private:
     std::vector<double> best_fitness;
     std::vector<unsigned> new_solution_rate;
     /* internal data structures for GA */
+    size_t mating_parent_num;
     std::vector<individual_type> parents;
     std::vector<individual_type> children;
 };

@@ -2,6 +2,8 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
 #include <random>
+#include <stdexcept>
+
 
 void GA::createInitialPopulation(){
   std::random_device rd;
@@ -20,7 +22,25 @@ void GA::createInitialPopulation(){
 }
 
 
+/* selection */
+std::vector<size_t> GA::selectParents(){
+  if (parent_selection_method == "random"){
+    return randomSelection();
+  }
+  throw std::runtime_error("Can't match any selection method!");
+}
 
+std::vector<size_t> GA::randomSelection(){
+    std::vector<size_t> ret;
+
+    std::random_device rd;
+    std::default_random_engine eng(rd());
+    std::uniform_int_distribution<int> distr(0, population_size);
+    for (size_t i = 0; i < mating_parent_num; ++i)
+      ret.push_back(distr(eng));
+
+    return ret;
+}
 
 
 namespace py = pybind11;
