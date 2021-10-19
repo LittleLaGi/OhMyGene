@@ -1,4 +1,4 @@
-#include "GAbind.hpp"
+#include "GA.hpp"
 
 #include <gtest/gtest.h>
 
