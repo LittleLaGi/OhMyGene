@@ -20,8 +20,8 @@ PYBIND11_MODULE(GAbind, m) {
     .def("getMutationProbability", &GA::getMutationProbability)
     .def("getWeights", &GA::getWeights)
     .def("getParentSelectionMethod", &GA::getParentSelectionMethod)
-    .def("getCrossOverMethods", &GA::getCrossOverMethods)
-    .def("getMutationMethods", &GA::getMutationMethods)
+    .def("getCrossOverMethod", &GA::getCrossOverMethod)
+    .def("getMutationMethod", &GA::getMutationMethod)
     /* getter for internal data structures: for debug usage */
     .def("getParents", &GA::getParents)
     /* setter for results: for debug usage */

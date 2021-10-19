@@ -10,11 +10,11 @@ class TestGAInputParams:
     mutation_probability = 0.01
     weights = [0.2, 0.2, 0.2, 0.2, 0.2]
     parent_selection_method = 'random'
-    cross_over_method = 'single_point'
+    crossover_method = 'single_point'
     mutation_method = 'random'
 
     ga = GAbind.GA(gene_count, gene_bound, generation_number, population_size, mating_parent_ratio,
-                    mutation_probability, weights, parent_selection_method, cross_over_method,
+                    mutation_probability, weights, parent_selection_method, crossover_method,
                     mutation_method)
 
     def test_getGeneCount1(self):
@@ -43,7 +43,7 @@ class TestGAInputParams:
         assert self.ga.getParentSelectionMethod() == 'random'
 
     def test_getCrossOverMethods1(self):
-        assert self.ga.getCrossOverMethods() == 'single_point'
+        assert self.ga.getCrossOverMethod() == 'single_point'
 
     def test_getMutationMethods1(self):
-        assert self.ga.getMutationMethods() == 'random'
+        assert self.ga.getMutationMethod() == 'random'

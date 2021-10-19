@@ -1,5 +1,0 @@
-if(EXISTS "/home/littlelagi/OhMyGene/build/test/cpp/GA_test[1]_tests.cmake")
-  include("/home/littlelagi/OhMyGene/build/test/cpp/GA_test[1]_tests.cmake")
-else()
-  add_test(GA_test_NOT_BUILT GA_test_NOT_BUILT)
-endif()
