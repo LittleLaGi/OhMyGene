@@ -8,6 +8,7 @@ protected:
 
   GAbindTest() {
     // Do set-up work for each test here.
+    ga1.createInitialPopulation();
   }
 
   ~GAbindTest() override {
@@ -54,7 +55,6 @@ protected:
 
 
 TEST_F(GAbindTest, createInitialPopulationTest) {
-  ga1.createInitialPopulation();
   auto parents = ga1.getParents();
   for (auto& t : parents){
     auto gene = std::get<0>(t);
@@ -77,7 +77,6 @@ TEST_F(GAbindTest, randomSelectionTest) {
     EXPECT_GE(i, 0);
     EXPECT_LT(i, ga1.getPopulationSize());
   }
-  
 }
 
 int main(int argc, char **argv) {

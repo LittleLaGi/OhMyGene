@@ -1,9 +1,11 @@
 .PHONY: clean test
-PINC = `python3 -m pybind11 --includes`
-SUFFIX = `python3-config --extension-suffix`
+
+PROJECT_ROOT =/home/littlelagi/OhMyGene
+PINC =`python3 -m pybind11 --includes`
+SUFFIX =`python3-config --extension-suffix`
 
 all:
-	g++ -Wall -shared -std=c++11 -fPIC $(PINC) src/GA.cpp src/GAbind.cpp -o GAbind$(SUFFIX) -I/usr/include/python3.8 -I/home/littlelagi/OhMyGene/include
+	g++ -Wall -shared -std=c++11 -fPIC $(PINC) src/GA.cpp src/GAbind.cpp -o GAbind$(SUFFIX) -I/usr/include/python3.8 -I$(PROJECT_ROOT)/include
 
 run:
 	python3 omg/run.py

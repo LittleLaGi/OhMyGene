@@ -8,9 +8,9 @@ FetchContent_Declare(
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 FetchContent_MakeAvailable(googletest)
 
-include_directories(/home/littlelagi/OhMyGene/include)
+include_directories(${PROJECT_ROOT}/include)
 
-link_directories(/home/littlelagi/OhMyGene/src)
+link_directories(${PROJECT_ROOT}/src)
 
 add_executable(
   GA_test

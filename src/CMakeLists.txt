@@ -1,3 +1,3 @@
-include_directories(/home/littlelagi/OhMyGene/include)
+include_directories(${PROJECT_ROOT}/include)
 
 add_library(GA GA.cpp)
