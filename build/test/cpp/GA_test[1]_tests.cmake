@@ -1,0 +1,7 @@
+add_test( GAbindTest.createInitialPopulationTest /home/littlelagi/OhMyGene/build/test/cpp/GA_test [==[--gtest_filter=GAbindTest.createInitialPopulationTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties( GAbindTest.createInitialPopulationTest PROPERTIES WORKING_DIRECTORY /home/littlelagi/OhMyGene/build/test/cpp)
+add_test( GAbindTest.MatingParentNumTest /home/littlelagi/OhMyGene/build/test/cpp/GA_test [==[--gtest_filter=GAbindTest.MatingParentNumTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties( GAbindTest.MatingParentNumTest PROPERTIES WORKING_DIRECTORY /home/littlelagi/OhMyGene/build/test/cpp)
+add_test( GAbindTest.randomSelectionTest /home/littlelagi/OhMyGene/build/test/cpp/GA_test [==[--gtest_filter=GAbindTest.randomSelectionTest]==] --gtest_also_run_disabled_tests)
+set_tests_properties( GAbindTest.randomSelectionTest PROPERTIES WORKING_DIRECTORY /home/littlelagi/OhMyGene/build/test/cpp)
+set( GA_test_TESTS GAbindTest.createInitialPopulationTest GAbindTest.MatingParentNumTest GAbindTest.randomSelectionTest)

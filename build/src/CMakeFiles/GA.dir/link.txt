@@ -1,0 +1,2 @@
+/usr/bin/ar qc libGA.a  CMakeFiles/GA.dir/GA.cpp.o
+/usr/bin/ranlib libGA.a

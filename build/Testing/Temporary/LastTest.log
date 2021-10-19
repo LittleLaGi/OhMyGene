@@ -1,0 +1,81 @@
+Start testing: Oct 19 17:35 CST
+----------------------------------------------------------
+1/3 Testing: GAbindTest.createInitialPopulationTest
+1/3 Test: GAbindTest.createInitialPopulationTest
+Command: "/home/littlelagi/OhMyGene/build/test/cpp/GA_test" "--gtest_filter=GAbindTest.createInitialPopulationTest" "--gtest_also_run_disabled_tests"
+Directory: /home/littlelagi/OhMyGene/build/test/cpp
+"GAbindTest.createInitialPopulationTest" start time: Oct 19 17:35 CST
+Output:
+----------------------------------------------------------
+Note: Google Test filter = GAbindTest.createInitialPopulationTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from GAbindTest
+[ RUN      ] GAbindTest.createInitialPopulationTest
+[       OK ] GAbindTest.createInitialPopulationTest (0 ms)
+[----------] 1 test from GAbindTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"GAbindTest.createInitialPopulationTest" end time: Oct 19 17:35 CST
+"GAbindTest.createInitialPopulationTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/3 Testing: GAbindTest.MatingParentNumTest
+2/3 Test: GAbindTest.MatingParentNumTest
+Command: "/home/littlelagi/OhMyGene/build/test/cpp/GA_test" "--gtest_filter=GAbindTest.MatingParentNumTest" "--gtest_also_run_disabled_tests"
+Directory: /home/littlelagi/OhMyGene/build/test/cpp
+"GAbindTest.MatingParentNumTest" start time: Oct 19 17:35 CST
+Output:
+----------------------------------------------------------
+Note: Google Test filter = GAbindTest.MatingParentNumTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from GAbindTest
+[ RUN      ] GAbindTest.MatingParentNumTest
+[       OK ] GAbindTest.MatingParentNumTest (0 ms)
+[----------] 1 test from GAbindTest (0 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (0 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"GAbindTest.MatingParentNumTest" end time: Oct 19 17:35 CST
+"GAbindTest.MatingParentNumTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/3 Testing: GAbindTest.randomSelectionTest
+3/3 Test: GAbindTest.randomSelectionTest
+Command: "/home/littlelagi/OhMyGene/build/test/cpp/GA_test" "--gtest_filter=GAbindTest.randomSelectionTest" "--gtest_also_run_disabled_tests"
+Directory: /home/littlelagi/OhMyGene/build/test/cpp
+"GAbindTest.randomSelectionTest" start time: Oct 19 17:35 CST
+Output:
+----------------------------------------------------------
+Note: Google Test filter = GAbindTest.randomSelectionTest
+[==========] Running 1 test from 1 test suite.
+[----------] Global test environment set-up.
+[----------] 1 test from GAbindTest
+[ RUN      ] GAbindTest.randomSelectionTest
+[       OK ] GAbindTest.randomSelectionTest (1 ms)
+[----------] 1 test from GAbindTest (1 ms total)
+
+[----------] Global test environment tear-down
+[==========] 1 test from 1 test suite ran. (1 ms total)
+[  PASSED  ] 1 test.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"GAbindTest.randomSelectionTest" end time: Oct 19 17:35 CST
+"GAbindTest.randomSelectionTest" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 19 17:35 CST

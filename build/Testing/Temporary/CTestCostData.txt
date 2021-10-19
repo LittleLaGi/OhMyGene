@@ -1,0 +1,4 @@
+GAbindTest.createInitialPopulationTest 17 0.000235193
+GAbindTest.MatingParentNumTest 17 0.000143949
+GAbindTest.randomSelectionTest 13 0.000304228
+---

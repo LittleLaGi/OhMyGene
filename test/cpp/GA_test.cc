@@ -9,6 +9,7 @@ protected:
   GAbindTest() {
     // Do set-up work for each test here.
     ga1.createInitialPopulation();
+    ga2.createInitialPopulation();
   }
 
   ~GAbindTest() override {
@@ -73,9 +74,17 @@ TEST_F(GAbindTest, MatingParentNumTest) {
 }
 
 TEST_F(GAbindTest, randomSelectionTest) {
-  for (auto i : ga1.selectParents()){
-    EXPECT_GE(i, 0);
-    EXPECT_LT(i, ga1.getPopulationSize());
+  for (size_t count = 0; count < 20; ++count){
+    ga1.createInitialPopulation();
+    for (auto i : ga1.selectParents()){
+      EXPECT_GE(i, 0);
+      EXPECT_LT(i, ga1.getPopulationSize());
+    }
+    ga2.createInitialPopulation();
+    for (auto i : ga2.selectParents()){
+      EXPECT_GE(i, 0);
+      EXPECT_LT(i, ga2.getPopulationSize());
+    }
   }
 }
 

@@ -34,7 +34,7 @@ std::vector<size_t> GA::randomSelection(){
 
     std::random_device rd;
     std::default_random_engine eng(rd());
-    std::uniform_int_distribution<int> distr(0, population_size);
+    std::uniform_int_distribution<int> distr(0, population_size - 1);
     for (size_t i = 0; i < mating_parent_num; ++i)
       ret.push_back(distr(eng));
 

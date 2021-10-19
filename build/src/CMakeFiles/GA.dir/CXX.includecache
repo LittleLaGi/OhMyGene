@@ -1,0 +1,24 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/GA.hpp
+vector
+-
+tuple
+-
+string
+-
+
+/home/littlelagi/OhMyGene/src/GA.cpp
+GA.hpp
+/home/littlelagi/OhMyGene/src/GA.hpp
+random
+-
+stdexcept
+-
+
