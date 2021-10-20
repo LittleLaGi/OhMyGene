@@ -8,42 +8,36 @@ public:
     using gene = std::vector<double>;
     using fitness = double;
     using individual = std::tuple<gene, fitness>;
-    using bound = std::tuple<size_t, size_t>;
-    GA(const size_t gene_count, const std::vector<bound> gene_bound, const size_t generation_number, const size_t population_size,
-        const float mating_parent_ratio, const float mutation_probability, const std::vector<float> weights,
-        const std::string parent_selection_method, const std::string crossover_method, const std::string mutation_method)
-        : gene_count(gene_count), gene_bound(gene_bound), generation_number(generation_number), population_size(population_size),
-        mating_parent_ratio(mating_parent_ratio), mutation_probability(mutation_probability), weights(weights),
-        parent_selection_method(parent_selection_method), crossover_method(crossover_method),
-        mutation_method(mutation_method) 
-        {
-            mating_parent_num = (int)(population_size * mating_parent_ratio);
-            if (mating_parent_num % 2)
-                mating_parent_num += 1;
-        }
+    using bound = std::tuple<double, double>;
+    GA(const size_t gene_count, const std::vector<bound> gene_bound, const size_t generation_number, 
+        const size_t population_size, const float mutation_probability, const std::string crossover_method)
+        : gene_count(gene_count), gene_bound(gene_bound), generation_number(generation_number), 
+        population_size(population_size), mutation_probability(mutation_probability), crossover_method(crossover_method)
+        { }
 
     /* getter for input params: for debug usage */
     const size_t getGeneCount() { return gene_count; }
     const std::vector<bound> getGeneBound() { return gene_bound; }
     const size_t getGenerationNumber() { return generation_number; }
     const size_t getPopulationSize() { return population_size; }
-    const float getMatingParentRatio() { return mating_parent_ratio; }
     const float getMutationProbability() { return mutation_probability; }
-    const std::vector<float> getWeights() { return weights; }
-    const std::string getParentSelectionMethod() { return parent_selection_method; }
     const std::string getCrossOverMethod() { return crossover_method; }
-    const std::string getMutationMethod() { return mutation_method; }
     /* getter for internal data structures: for debug usage */
     const std::vector<individual> getParents() { return parents; }
     const std::vector<individual> getChildren() { return children; }
-    const size_t getMatingParentNum() { return mating_parent_num; }
-    const std::vector<size_t> getSelectedParents() { return selected_parents; }
+    const std::vector<double> getWeights() { return weights; }
+    const std::vector<fitness> getFitnessValues() { return fitness_values; }
+    const std::vector<size_t> getSelectedOrder() { return selected_order; }
     /* setter for results: for debug usage */
-    void setLastPopulation(std::vector<individual> last_pop) { last_population = last_pop; }
+    void setElitesChromosomes(std::vector<gene> chromosomes) { elites_chromosomes = chromosomes; }
+    void setElitesWeights(std::vector<double> weights) { elites_weights = weights; }
+    void setElitesFitnessValue(double fitness_value) { elites_fitness_value = fitness_value; }
     void setBestFitness(std::vector<double> best_fit) { best_fitness = best_fit; }
     void setNewSolutionRate(std::vector<unsigned> new_sol_rate) { new_solution_rate = new_sol_rate; }
     /* getter for results */
-    std::vector<individual> getLastPopulation() { return last_population; }
+    std::vector<gene> getElitesChromosomes() { return elites_chromosomes; }
+    std::vector<double> getElitesWeights() { return elites_weights; }
+    double getElitesFitnessValue() { return elites_fitness_value; }
     std::vector<double> getBestFitness() { return best_fitness; }
     std::vector<unsigned> getNewSolutionRate() { return new_solution_rate; }
     
@@ -55,18 +49,22 @@ public:
         // fitness = sum(wi * norm(fi(x)))
         // signature for each fi: double f(std::vector<double>)
     void evaluateFitnessValue();
-    // selection: return indices fo parents
+    // selection
     void selectParents();
-    void randomSelection();
     // crossover: produce offsprings from selected parents,
     //            push offsprings and selected parents into children
     void crossover();
     individual singlePointCrossover(size_t index, size_t p1_i, size_t p2_i);
     // mutation
     void mutation();
-    // no "run" function => implemented in wrapper => convient for debugging
+    // update parents
+    // test stop condition
 
     /* helper functions */
+    // generate random weights
+    // calculate selection probability of each solution
+    // update elites
+    // randomly replaced by elites
 
     /* objective functions */
     double objFunc1(gene);
@@ -77,19 +75,18 @@ private:
     const std::vector<bound> gene_bound;
     const size_t generation_number;
     const size_t population_size;
-    const float mating_parent_ratio;
     const float mutation_probability;
-    const std::vector<float> weights;
-    const std::string parent_selection_method;
     const std::string crossover_method;
-    const std::string mutation_method;
     /* results */
-    std::vector<individual> last_population;
+    std::vector<gene> elites_chromosomes;
+    std::vector<double> elites_weights;
+    double elites_fitness_value;
     std::vector<double> best_fitness;
     std::vector<unsigned> new_solution_rate;
     /* internal data structures for GA */
-    size_t mating_parent_num;
     std::vector<individual> parents;
     std::vector<individual> children;
-    std::vector<size_t> selected_parents;
+    std::vector<double> weights;
+    std::vector<fitness> fitness_values;
+    std::vector<size_t> selected_order;
 };

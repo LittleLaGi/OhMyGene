@@ -2,39 +2,27 @@
 
 '''
 Tunable Parameters
-0. gene count (no default)
+1. gene count (no default)
     range: > 0
-0.1 gene bound (no default)
+
+2. gene bound (no default)
     len(gene_bound) == gene_count
-    lower bound constraint: >= 0
-1. generation number (default = 100)
+
+3. generation number (default = 100)
     range: >= 0
-2. population size (default = gene_count * 10)
-3. mating parent ratio (default = 0.5)
+
+4. population size (default = gene_count * 10)
+    constraint: population_size % 2 == 0
+
+5. mutation probability (default = 0.01)
     range: > 0 && < 1
-4. mutation probability (default = 0.01)
-    range: > 0 && < 1
-5. weights (no default)
-    len(weights) implicitly determines objective function counts ( > 0)
-    w >= 0 && w <= 1 for w in weights
-6. parent selection method (default = random selection)
-    options:
-        random
-        rank
-        tournament
-        roulette_wheel (fitness has to be positive)
-7. cross over method (default = single point crossover)
+
+6. cross over method (default = single point crossover)
     options:
         single_point
         two_points
         uniform
         scattered
-8. mutation method (default = random mutation)
-    options:
-        random
-        swap
-        scramble
-        adaptive
 '''
 import sys
 sys.path.append('/home/littlelagi/OhMyGene')
@@ -42,32 +30,32 @@ from printer import Printer
 from wrapper import GAwrapper
 
 def main():
+    """
     args = {
         'gene_count' : 5,
         'gene_bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
         'generation_number' : 100,
         'population_size' : 10,
-        'mating_parent_ratio' : 0.5,
         'mutation_probability' : 0.01,
-        'weights' : [0.2, 0.2, 0.2, 0.2, 0.2],
-        'parent_selection_method' : 'random',
-        'cross_over_method' : 'single_point',
-        'mutation_method' : 'random'
+        'cross_over_method' : 'single_point'
     }
 
     ga = GAwrapper()
     ga.setParams(args)
     ga.run()
-    
+    """
 
 
 
     """ test Printer """
     result = {
-        'last_population': [
-            ([1.1, -1.1], 0.01), ([2.2, -2.2], 0.02), ([3.3, -3.3], 0.03), ([4.4, -4.4], 0.04),
-            ([5.5, -5.5], 0.05), ([6.6, -6.6], 0.06), ([7.7, -7.7], 0.07), ([8.8, -8.8], 0.08)
+        'elites_chromosomes' : [
+            [1.1, -1.1], [2.2, -2.2], [3.3, -3.3], [4.4, -4.4]
         ],
+        'elites_weights' : [
+            [0.1, 0.6, 0.3], [0.2, 0.4, 0.4], [0.1, 0.8, 0.1], [0.4, 0.3, 0.3]
+        ],
+        'elites_fitness_value' : 0.00123,
         'best_fitness': [
             0.1, 0.09, 0.08, 0.07, 0.06, 0.05, 0.04, 0.03, 0.02 ,0.01
         ],
@@ -76,16 +64,11 @@ def main():
         ]
     }
     printer = Printer(result)
-    """
-    printer.printTopPercent(1)
-    printer.printTopPercent(5)
-    printer.printTopPercent(10)
-    printer.printTopPercent(50)
-    printer.printTopPercent(100)
 
+    printer.printElites()
     printer.plotFitness()
     printer.plotNewSolutionRate()
-    """
+
 
 if __name__ == "__main__":
     main()

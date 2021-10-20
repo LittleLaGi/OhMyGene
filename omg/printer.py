@@ -3,48 +3,30 @@ import matplotlib.pyplot
 class Printer:
     """
     [input]
-    'last_population': list of (chromosome, fitness) of the last population.
-    'best_fitness': list of best fitness value of each generation.
-    'new_solution_rate' list of new solution rate of each generation.
+    'elites_chromosomes': a list of chromosoms of the elites.
+    'elites_weights': a list of weights of the elites.
+    'elites_fitness_value' a number represents fitness of the elites.
+    'best_fitness': a list of best fitness value of each generation.
+    'new_solution_rate' a list of new solution rate of each generation.
     """
     result: dict
     def __init__(self, input: dict):
         self.result = input
 
-    def printTopNum(self, num: int):
+    def printElites(self):
         """print out the top num individuals in last population."""
-        last_population = self.result['last_population']
-
-        if num < 0:
-            raise ValueError('Negative input number!')
-
-        if len(last_population) < num:
-            raise ValueError('Not enough individuals to show!')
-
-        last_population.sort(key = lambda x: x[1])
+        elites_chromosomes = self.result['elites_chromosomes']
+        elites_weights = self.result['elites_weights']
+        elites_fitness_value = self.result['elites_fitness_value']
         
-        print(f'====== Top {num} indivisuals ======')
-        for i in range(num):
-            print(f'{i+1}. {last_population[i][0]}:  {last_population[i][1]}')
-        print(f'===============================')
+        print(f'========== Elites ==========')
+        print(f'solution number: {len(elites_chromosomes)}')
+        print(f'fitness value: {elites_fitness_value}')
         print()
-
-
-    def printTopPercent(self, percent: float):
-        """print out the top individuals in last population."""
-        last_population = self.result['last_population']
-
-        if percent < 0 or percent > 100:
-            raise ValueError('Invalid percentage!')
-
-        last_population.sort(key = lambda x: x[1])
-        num = int(round(len(last_population) * percent / 100))
-        if num == 0:
-            num = 1
-
-        print(f'====== Top {num} indivisuals ======')
-        for i in range(num):
-            print(f'{i+1}. {last_population[i][0]}:  {last_population[i][1]}')
+        for i in range(len(elites_chromosomes)):
+            print(f'chromosomes: {elites_chromosomes[i]}')
+            print(f'weights: {elites_weights[i]}')
+            print()
         print(f'===============================')
         print()
 

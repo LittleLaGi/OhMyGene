@@ -18,9 +18,6 @@ testPython:
 testParser:
 	python3 -m pytest test/python3/test_parser.py -v
 
-testPrinter:
-	python3 -m pytest test/python3/test_printer.py -v
-
 testGA:
 	python3 -m pytest test/python3/test_GA.py -v
 
