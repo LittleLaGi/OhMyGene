@@ -92,26 +92,62 @@ void GA::crossover(){
 
     if (crossover_method == "single_point"){
         for (size_t i = 0; i < parents.size() - 1; i += 2){
-            children[i] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1]);
-            children[i + 1] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1]);
+            children[i] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1], 1);
+            children[i + 1] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1], 0);
         }
     }
     else
       throw std::runtime_error("Can't match any crossover method!");
 }
 
-GA::individual GA::singlePointCrossover(size_t index, size_t p1_i, size_t p2_i){
+GA::individual GA::singlePointCrossover(size_t index, size_t p1_i, size_t p2_i, bool flag){
     gene *g1 = &parents[p1_i];
     gene *g2 = &parents[p2_i];
-    gene g(g1->begin(), g1->begin() + index);
-    g.insert(g.end(), g2->begin() + index, g2->end());
+    gene g;
+    
+    if (flag){
+      g.insert(g.end(), g1->begin(), g1->begin() + index);
+      g.insert(g.end(), g2->begin() + index, g2->end());
+    }  
+    else{
+      g.insert(g.end(), g2->begin(), g2->begin() + index);
+      g.insert(g.end(), g1->begin() + index, g1->end());
+    }
+
     return g;
 }
 
 
 /* mutation */
 void GA::mutation(){
+  float prob = mutation_probability;
+  std::random_device rd;
+  std::default_random_engine eng(rd());
+  std::uniform_real_distribution<double> distr(0, 1);
+  for (auto &gene_c : children){
+    if (distr(eng) < prob){
+      std::uniform_int_distribution<size_t> distr_index(0, gene_count - 1);
+      size_t index = distr_index(eng);
+      
+      const double lower = std::get<0>(gene_bound[index]);
+      const double upper = std::get<1>(gene_bound[index]);
+      std::uniform_real_distribution<double> distr_gene(lower, upper);
 
+      gene_c[index] = distr_gene(eng);
+    }
+  }
+}
+
+
+/* update parents */
+void GA::updateParents(){
+  parents.clear();
+  parents.insert(parents.begin(), children.begin(), children.end());
+}
+
+
+/* some of the children are randomly replaced by elites */
+void GA::randomReplace(){
 
 }
 
@@ -141,3 +177,4 @@ void GA::generateRandomWeights(){
       weights[i].push_back((double)random_num[k] / sum);
   }
 }
+

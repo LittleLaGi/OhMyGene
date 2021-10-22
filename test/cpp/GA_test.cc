@@ -108,34 +108,36 @@ TEST_F(GAbindTest, updateSelectedOrder){
     EXPECT_EQ(order[i], i);
 }
 
+TEST_F(GAbindTest, singlePointCrossoverTest){
+  auto selected_order = ga1.getSelectedOrder();
+  for (size_t i = 0; i < selected_order.size() - 1; i += 2){
+    for (size_t index = 0; index < ga1.getGeneCount(); ++index){
+      auto gene1 = ga1.getParents()[selected_order[i]];
+      auto gene2 = ga1.getParents()[selected_order[i + 1]];
+      auto child_gene1 = ga1.singlePointCrossover(index, selected_order[i], selected_order[i + 1], 1);
+      auto child_gene2 = ga1.singlePointCrossover(index, selected_order[i], selected_order[i + 1], 0);
+      for (size_t j = 0; j < index; ++j)
+        EXPECT_EQ(child_gene1[j], gene1[j]);
+      for (size_t j = index; j < ga1.getGeneCount(); ++j)
+        EXPECT_EQ(child_gene1[j], gene2[j]);
+      for (size_t j = 0; j < index; ++j)
+        EXPECT_EQ(child_gene2[j], gene2[j]);
+      for (size_t j = index; j < ga1.getGeneCount(); ++j)
+        EXPECT_EQ(child_gene2[j], gene1[j]);
+    }
+  }
+}
 
-// TEST_F(GAbindTest, singlePointCrossoverTest){
-//   auto selected_parents = ga1.getSelectedParents();
-//   for (size_t i = 0; i < selected_parents.size() - 1; i += 2){
-//     for (size_t index = 0; index < ga1.getGeneCount(); ++index){
-//       auto gene1 = std::get<0>(ga1.getParents()[selected_parents[i]]);
-//       auto gene2 = std::get<0>(ga1.getParents()[selected_parents[i + 1]]);
-//       auto child_gene = std::get<0>(ga1.singlePointCrossover(index, selected_parents[i], selected_parents[i + 1]));
-//       for (size_t j = 0; j < index; ++j)
-//         EXPECT_EQ(child_gene[j], gene1[j]);
-//       for (size_t j = index; j < ga1.getGeneCount(); ++j)
-//         EXPECT_EQ(child_gene[j], gene2[j]);
-//     }
-//   }
-// }
+TEST_F(GAbindTest, updateParentsTest){
+  ga1.updateParents();
+  auto parents = ga1.getParents();
+  auto children = ga1.getChildren();
+  for (size_t i = 0; i < parents.size(); ++i){
+    for (size_t j = 0; j < ga1.getGeneCount(); ++j)
+      EXPECT_EQ(parents[i][j], children[i][j]);
+  }
+}
 
-// TEST_F(GAbindTest, crossoverTest){
-//   // test selected parents
-//   for (size_t i = 0; i < ga1.getSelectedParents().size(); ++i){
-//     auto gene_p = std::get<0>(ga1.getParents()[ga1.getSelectedParents()[i]]);
-//     auto fitness_p = std::get<1>(ga1.getParents()[ga1.getSelectedParents()[i]]);
-//     auto gene_c = std::get<0>(ga1.getChildren()[i]);
-//     auto fitness_c = std::get<1>(ga1.getChildren()[i]);
-//     for (size_t j = 0; j < gene_p.size(); ++j)
-//       EXPECT_EQ(gene_p[j], gene_c[j]);
-//     EXPECT_EQ(fitness_p, fitness_c);
-//   }
-// }
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

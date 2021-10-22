@@ -7,6 +7,7 @@ Tunable Parameters
 
 2. gene bound (no default)
     len(gene_bound) == gene_count
+    gene value: [lower, upper]
 
 3. generation number (default = 100)
     range: >= 0
