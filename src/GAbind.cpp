@@ -19,6 +19,10 @@ PYBIND11_MODULE(GAbind, m) {
     .def("getCrossOverMethod", &GA::getCrossOverMethod)
     /* getter for internal data structures: for debug usage */
     .def("getParents", &GA::getParents)
+    .def("getChildren", &GA::getChildren)
+    .def("getWeights", &GA::getWeights)
+    .def("getFitnessValues", &GA::getFitnessValues)
+    .def("getSelectedOrder", &GA::getSelectedOrder)
     /* setter for results: for debug usage */
     .def("setElitesChromosomes", &GA::setElitesChromosomes)
     .def("setElitesWeights", &GA::setElitesWeights)
@@ -32,6 +36,13 @@ PYBIND11_MODULE(GAbind, m) {
     .def("getBestFitness", &GA::getBestFitness)
     .def("getNewSolutionRate", &GA::getNewSolutionRate)
     /* basic GA operation */
-    .def("createInitialPopulation", &GA::createInitialPopulation);
+    .def("createInitialPopulation", &GA::createInitialPopulation)
+    .def("evaluateFitnessValue", &GA::evaluateFitnessValue)
+    .def("updateElites", &GA::updateElites)
+    .def("updateSelectedOrder", &GA::updateSelectedOrder)
+    .def("crossover", &GA::crossover)
+    .def("mutation", &GA::mutation)
+    .def("updateParents", &GA::updateParents)
+    .def("randomReplace", &GA::randomReplace);
 }
 

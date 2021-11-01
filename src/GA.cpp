@@ -34,12 +34,12 @@ void GA::evaluateFitnessValue(){
     fitness_values[i] = fitness;
   }
   // new generation
-  ++iteration;
+  ++generation;
 }
 
 /* update elites */
 void GA::updateElites(){
-  double min = *std::max_element(fitness_values.begin(), fitness_values.end());
+  double min = *std::min_element(fitness_values.begin(), fitness_values.end());
   // no indivisual is better than elites
   if (min > elites_fitness_value)
     return;
@@ -92,8 +92,9 @@ void GA::crossover(){
 
     if (crossover_method == "single_point"){
         for (size_t i = 0; i < parents.size() - 1; i += 2){
-            children[i] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1], 1);
-            children[i + 1] = singlePointCrossover(distr(eng), selected_order[i], selected_order[i + 1], 0);
+            size_t pos = distr(eng);
+            children[i] = singlePointCrossover(pos, selected_order[i], selected_order[i + 1], 1);
+            children[i + 1] = singlePointCrossover(pos, selected_order[i], selected_order[i + 1], 0);
         }
     }
     else
@@ -148,7 +149,16 @@ void GA::updateParents(){
 
 /* some of the children are randomly replaced by elites */
 void GA::randomReplace(){
+  std::random_device rd;
+  std::default_random_engine eng(rd());
+  std::uniform_int_distribution<size_t> distr(0, elites_chromosomes.size() - 1);
+  size_t replace_num = distr(eng);
 
+  std::random_shuffle(parents.begin(), parents.end());
+  for (size_t i = 0; i < replace_num; ++i){
+    parents[i] = elites_chromosomes[i];
+    weights[i] = elites_weights[i];
+  }
 }
 
 
@@ -173,6 +183,7 @@ void GA::generateRandomWeights(){
 
     int sum = std::accumulate(random_num.begin(), random_num.end(), 0);
 
+    weights[i].clear();
     for (size_t k = 0; k < objective_functions.size(); ++k)
       weights[i].push_back((double)random_num[k] / sum);
   }

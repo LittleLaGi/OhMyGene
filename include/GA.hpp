@@ -55,7 +55,7 @@ public:
     void createInitialPopulation();
     // evaluate fitness value for each chromosome: x
         // for each wi and objective function fi:
-        // fitness = sum(wi * norm(fi(x)))
+        // fitness = sum(wi * norm(fi(x))); smaller is better
         // signature for each fi: double f(std::vector<double>)
     void evaluateFitnessValue();
     // (serial) update elites
@@ -68,7 +68,7 @@ public:
     // mutation
     void mutation();
     void updateParents();
-    // some of the children are randomly replaced by elites
+    // some individuals in the new generation are randomly replaced by elites
     void randomReplace();
     // test stop condition
 
@@ -92,14 +92,14 @@ private:
 
     /* results */
     // elites store best-known Pareto front
-    std::vector<gene> elites_chromosomes;
+    std::vector<individual> elites_chromosomes;
     std::vector<std::vector<double>> elites_weights;
     double elites_fitness_value = __DBL_MAX__;
     std::vector<double> best_fitness;
     std::vector<unsigned> new_solution_rate;
 
     /* internal data structures for GA */
-    size_t iteration = 0;
+    size_t generation = 0;
     std::vector<individual> parents;
     std::vector<individual> children;
     std::vector<std::vector<double>> weights;

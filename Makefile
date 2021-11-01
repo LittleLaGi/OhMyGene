@@ -5,7 +5,7 @@ PINC =`python3 -m pybind11 --includes`
 SUFFIX =`python3-config --extension-suffix`
 
 all:
-	g++ -Wall -shared -std=c++11 -fPIC $(PINC) src/GA.cpp src/GAbind.cpp src/obj_funcs.cpp -o GAbind$(SUFFIX) -I/usr/include/python3.8 -I$(PROJECT_ROOT)/include
+	g++ -O3 -Wall -shared -std=c++11 -fPIC $(PINC) src/GA.cpp src/GAbind.cpp src/obj_funcs.cpp -o GAbind$(SUFFIX) -I/usr/include/python3.8 -I$(PROJECT_ROOT)/include
 
 run:
 	python3 omg/run.py
