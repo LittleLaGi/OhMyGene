@@ -7,6 +7,7 @@
 #include <iostream>
 
 
+
 /* init */
 void GA::createInitialPopulation(){
   std::random_device rd;
@@ -37,24 +38,37 @@ void GA::evaluateFitnessValue(){
   ++generation;
 }
 
+
 /* update elites */
 void GA::updateElites(){
   double min = *std::min_element(fitness_values.begin(), fitness_values.end());
   // no indivisual is better than elites
-  if (min > elites_fitness_value)
+  if (min - elites_fitness_value > THRESHOLD){
+    best_fitness.push_back(elites_fitness_value);
     return;
+  }
 
   // found better Pareto front
-  elites_chromosomes.clear();
-  elites_weights.clear();
-  elites_fitness_value = min;
+  if (elites_fitness_value - min > THRESHOLD){
+    elites_chromosomes.clear();
+    elites_set.clear();
+    elites_weights.clear();
+    elites_fitness_value = min;
+  }
+
   for (size_t i = 0; i < fitness_values.size(); ++i){
     if (fitness_values[i] - min <= THRESHOLD){
+      if (elites_set.find(parents[i]) != elites_set.end())
+        continue;
+      elites_set.insert(parents[i]);
       elites_chromosomes.push_back(parents[i]);
       elites_weights.push_back(weights[i]);
     }
   }
+
+  best_fitness.push_back(elites_fitness_value);
 }
+
 
 /* determine the order to be paired up for crossover */
 void GA::updateSelectedOrder(){
@@ -151,7 +165,7 @@ void GA::updateParents(){
 void GA::randomReplace(){
   std::random_device rd;
   std::default_random_engine eng(rd());
-  std::uniform_int_distribution<size_t> distr(0, elites_chromosomes.size() - 1);
+  std::uniform_int_distribution<size_t> distr(0, elites_chromosomes.size());
   size_t replace_num = distr(eng);
 
   std::random_shuffle(parents.begin(), parents.end());

@@ -1,8 +1,9 @@
 #include <vector>
 #include <tuple>
 #include <string>
+#include <set>
 
-#define THRESHOLD 0.01
+#define THRESHOLD 0.1
 
 class GA {
 public:
@@ -93,6 +94,7 @@ private:
     /* results */
     // elites store best-known Pareto front
     std::vector<individual> elites_chromosomes;
+    std::set<individual> elites_set;
     std::vector<std::vector<double>> elites_weights;
     double elites_fitness_value = __DBL_MAX__;
     std::vector<double> best_fitness;

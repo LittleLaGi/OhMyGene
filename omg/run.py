@@ -32,11 +32,20 @@ from wrapper import GAwrapper
 
 def main():
 
+    # args = {
+    #     'gene_count' : 5,
+    #     'gene_bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
+    #     'generation_number' : 50,
+    #     'population_size' : 10,
+    #     'mutation_probability' : 0.01,
+    #     'cross_over_method' : 'single_point'
+    # }
+
     args = {
-        'gene_count' : 5,
-        'gene_bound' : [(0,100), (0,100), (0,100), (0,100), (0,100)],
-        'generation_number' : 50,
-        'population_size' : 10,
+        'gene_count' : 3,
+        'gene_bound' : [(-100,100), (-100,100), (-100,100)],
+        'generation_number' : 1000,
+        'population_size' : 100,
         'mutation_probability' : 0.01,
         'cross_over_method' : 'single_point'
     }
@@ -44,7 +53,11 @@ def main():
     ga = GAwrapper()
     ga.setParams(args)
     ga.run()
+    result = ga.getResult()
 
+    printer = Printer(result)
+    printer.printElites()
+    printer.plotFitness()
 
 
 
