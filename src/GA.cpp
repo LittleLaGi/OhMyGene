@@ -45,6 +45,7 @@ void GA::updateElites(){
   // no indivisual is better than elites
   if (min - elites_fitness_value > THRESHOLD){
     best_fitness.push_back(elites_fitness_value);
+    //printf("no indivisual is better than elites\n");
     return;
   }
 
@@ -54,17 +55,24 @@ void GA::updateElites(){
     elites_set.clear();
     elites_weights.clear();
     elites_fitness_value = min;
+    //printf("found better Pareto front\n");
   }
 
+  int counter = 0;
+  int cnt = 0;
   for (size_t i = 0; i < fitness_values.size(); ++i){
-    if (fitness_values[i] - min <= THRESHOLD){
-      if (elites_set.find(parents[i]) != elites_set.end())
+    if (fitness_values[i] - elites_fitness_value <= THRESHOLD){
+      if (elites_set.find(parents[i]) != elites_set.end()){
+        cnt++;
         continue;
+      }
       elites_set.insert(parents[i]);
       elites_chromosomes.push_back(parents[i]);
       elites_weights.push_back(weights[i]);
+      counter++;
     }
   }
+  //printf("fall through %d  %d\n", counter, cnt);
 
   best_fitness.push_back(elites_fitness_value);
 }
