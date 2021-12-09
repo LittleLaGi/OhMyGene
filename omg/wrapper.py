@@ -67,7 +67,7 @@ class GAwrapper:
 
             self.ga.mutation()
             self.ga.updateParents()
-            #self.ga.randomReplace()
+            self.ga.randomReplace()
 
 
         elites_chromosomes = self.ga.getElitesChromosomes()

@@ -43,7 +43,7 @@ def main():
 
     args = {
         'gene_count' : 2,
-        'gene_bound' : [(1, 4), (1, 2)],
+        'gene_bound' : [(-1, 1), (-1, 1)],
         'generation_number' : 1000,
         'population_size' : 100,
         'mutation_probability' : 0.01,

@@ -96,7 +96,7 @@ private:
     std::vector<individual> elites_chromosomes;
     std::set<individual> elites_set;
     std::vector<std::vector<double>> elites_weights;
-    double elites_fitness_value = __DBL_MAX__;
+    double elites_fitness_value = -__DBL_MAX__;
     std::vector<double> best_fitness;
     std::vector<unsigned> new_solution_rate;
 

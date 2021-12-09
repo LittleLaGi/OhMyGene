@@ -10,9 +10,11 @@
 
 //double objSphere(std::vector<double>);
 
-double objMOGA1(std::vector<double>);
-double objMOGA2(std::vector<double>);
+// double objMOGA1(std::vector<double>);
+// double objMOGA2(std::vector<double>);
 
+double multiObj1(std::vector<double>);
+double multiObj2(std::vector<double>);
 
 /* register user defined objective functions */
 void GA::addObjectiveFunctions(){
@@ -21,8 +23,11 @@ void GA::addObjectiveFunctions(){
 
   //objective_functions.push_back(&objSphere);
 
-  objective_functions.push_back(&objMOGA1);
-  objective_functions.push_back(&objMOGA2);
+  // objective_functions.push_back(&objMOGA1);
+  // objective_functions.push_back(&objMOGA2);
+
+  objective_functions.push_back(&multiObj1);
+  objective_functions.push_back(&multiObj2);
 }
 
 
@@ -48,10 +53,19 @@ void GA::addObjectiveFunctions(){
 // }
 
 
-double objMOGA1(std::vector<double> gene){
-  return -2 * sqrt(gene[0]);
+// double objMOGA1(std::vector<double> gene){
+//   return -2 * sqrt(gene[0]);
+// }
+
+// double objMOGA2(std::vector<double> gene){
+//   return -(gene[0] * (1 - gene[1]) + 5);
+// }
+
+
+double multiObj1(std::vector<double> gene){
+  return gene[0] - gene[1];
 }
 
-double objMOGA2(std::vector<double> gene){
-  return -(gene[0] * (1 - gene[1]) + 5);
+double multiObj2(std::vector<double> gene){
+  return gene[1] - gene[0];
 }

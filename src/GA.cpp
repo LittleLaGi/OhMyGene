@@ -41,27 +41,27 @@ void GA::evaluateFitnessValue(){
 
 /* update elites */
 void GA::updateElites(){
-  double min = *std::min_element(fitness_values.begin(), fitness_values.end());
+  double max = *std::max_element(fitness_values.begin(), fitness_values.end());
   // no indivisual is better than elites
-  if (min - elites_fitness_value > THRESHOLD){
+  if (elites_fitness_value - max > THRESHOLD){
     best_fitness.push_back(elites_fitness_value);
     //printf("no indivisual is better than elites\n");
     return;
   }
 
   // found better Pareto front
-  if (elites_fitness_value - min > THRESHOLD){
+  if (max - elites_fitness_value > THRESHOLD){
     elites_chromosomes.clear();
     elites_set.clear();
     elites_weights.clear();
-    elites_fitness_value = min;
+    elites_fitness_value = max;
     //printf("found better Pareto front\n");
   }
 
   int counter = 0;
   int cnt = 0;
   for (size_t i = 0; i < fitness_values.size(); ++i){
-    if (fitness_values[i] - elites_fitness_value <= THRESHOLD){
+    if (elites_fitness_value - fitness_values[i] <= THRESHOLD){
       if (elites_set.find(parents[i]) != elites_set.end()){
         cnt++;
         continue;
