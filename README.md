@@ -47,7 +47,7 @@ matplotlib
 pybind11
 
 ### How to Run GA
-step0. Change the path of `sys.path.append('/home/littlelagi/OhMyGene')` in `omg\run.py`.
+step0. Change the path of `sys.path.append('/home/littlelagi/OhMyGene')` in `omg\run.py`.  
 step1. Add objective functions in `src/obj_funcs.cpp`.  
 step2. Modify `args` in `omg\run.py`.  
 step3. Enter `make && make run` in terminal. (`make` is required only if `obj_funcs.cpp` or `THRESHOLD` is modified)  
