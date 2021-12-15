@@ -71,9 +71,9 @@ double multiObj2(std::vector<double> gene){
 }
 ```
 **arguments**  
-<img src="./image/args_multi.PNG" width="500">  
+<img src="./image/args_multi.PNG" width="400">  
 **solutions**  
-<img src="./image/elites_multi.PNG" width="500">  
+<img src="./image/elites_multi.PNG" width="400">  
 **fitness value**  
 <img src="./image/fitness_multi.PNG" width="500">  
 
