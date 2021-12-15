@@ -39,6 +39,38 @@ Users can try out different parameter combinations to get the best version of GA
 4. **Printer**: Python class initialized with Result. Responsible for printing the results in specified forms.
 5. **GA**: C++ class. Perform GA configured with parameters processed by Parser.
 
+## Test Cases
+**1. Single Objective Optimization**
+```C++
+double objSphere(std::vector<double> gene){
+    double ret = 0.0;
+    const double RADIOUS = 1.0;
+  
+    for (auto x : gene)
+        ret += x * x;
+    ret = sqrt(ret);
+
+    return -std::abs(ret - RADIOUS);
+}
+```
+**arguments**  
+**solutions**  
+**fitness value**  
+
+**2. Multiple Objective Optimization**
+```C++
+double multiObj1(std::vector<double> gene){
+  return gene[0] - gene[1];
+}
+
+double multiObj2(std::vector<double> gene){
+  return gene[1] - gene[0];
+}
+```
+**arguments**  
+**solutions**  
+**fitness value**  
+
 ## Getting Started
 ### Dependency
 #### Python3 packages required:
