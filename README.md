@@ -54,8 +54,11 @@ double objSphere(std::vector<double> gene){
 }
 ```
 **arguments**  
+<img src="./image/args_single.PNG" width="500">  
 **solutions**  
+<img src="./image/elites_single.PNG" width="500">  
 **fitness value**  
+<img src="./image/fitness_single.PNG" width="500">  
 
 **2. Multiple Objective Optimization**
 ```C++
@@ -68,8 +71,11 @@ double multiObj2(std::vector<double> gene){
 }
 ```
 **arguments**  
+<img src="./image/args_multi.PNG" width="500">  
 **solutions**  
+<img src="./image/elites_multi.PNG" width="500">  
 **fitness value**  
+<img src="./image/fitness_multi.PNG" width="500">  
 
 ## Getting Started
 ### Dependency
