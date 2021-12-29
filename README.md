@@ -33,7 +33,7 @@ Users can try out different parameter combinations to get the best version of GA
 6. cross over method (default = single point crossover)  
 
 **System Components**
-1. **Parser**: Python class. Checks the validity of input parameters and performs necessary transformations.
+1. **Parser**: Python class. Checks the validity of the arguments and performs necessary transformations.
 2. **GA Wrapper**: Python class. Wrapper class for underlying C++ GA class.
 3. **Result**: Python class. Contain results returned from GA wrapper.
 4. **Printer**: Python class initialized with Result. Responsible for printing the results in specified forms.
